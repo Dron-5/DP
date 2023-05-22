@@ -1,6 +1,7 @@
 package project.ChefBot.service;
 
 
+import com.google.common.base.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -26,8 +27,6 @@ public class TelegramBot extends TelegramLongPollingBot
     @Autowired
     private UserRepository userRepository;
     private Rc rc;
-    //private DB db = new DB();
-    private Sqlite sqlite;
 
     final BotConfig config;
 
@@ -37,7 +36,6 @@ public class TelegramBot extends TelegramLongPollingBot
                 "/help - Информация, как использовать этого бота ";
     static final String Rec = "11. 101 ккал   15 мин   Салат с редькой и морковью Легкий, простой, освежающий, всего за 15 минут! \n" +
             "https://static.1000.menu/res/640/img/content-v2/64/bf/72350/salat-s-redkoi-i-morkovu_1676959302_5_max.jpg  \n";
-
 
 
 
