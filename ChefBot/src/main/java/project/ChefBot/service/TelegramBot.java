@@ -1,7 +1,6 @@
 package project.ChefBot.service;
 
 
-import com.google.common.base.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
