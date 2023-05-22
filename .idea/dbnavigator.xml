@@ -22,7 +22,9 @@
     </last-used-providers>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="ac128f41-25ec-4762-8acf-5d046d25748b" object-ref="schemas/main/tables/ingredients" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="ac128f41-25ec-4762-8acf-5d046d25748b" dataset="main.users" active-filter-id="EMPTY_FILTER" />
@@ -98,7 +100,7 @@
           <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="true" />
-          <connect-automatically value="true" />
+          <connect-automatically value="false" />
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />

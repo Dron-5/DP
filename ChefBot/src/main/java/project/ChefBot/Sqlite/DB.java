@@ -1,6 +1,9 @@
 package project.ChefBot.Sqlite;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
+@Component
 public class DB {
     private final String HOST = "jdbc:sqlite:D:\\Project\\BOT10\\BOT10\\Recipes.db";
 
@@ -21,6 +24,5 @@ public class DB {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-
 
 }
