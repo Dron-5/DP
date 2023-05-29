@@ -84,12 +84,11 @@ public class TelegramBot extends TelegramLongPollingBot {
                     startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
                 }
                 case "/help" -> sendMessage(chatId, HELP_TEXT);
-                case "Пирог" -> sendMessage(chatId, sqlite.findSal());
-                case "Суп"-> sendMessage(chatId, sqlite.findSup());
+                case "Салат" -> sendMessage(chatId, sqlite.findSal());
+                case "Суп" -> sendMessage(chatId, sqlite.findSup());
+                case "Пирог" -> sendMessage(chatId, sqlite.findPir());
             }
-
         }
-
     }
 
     public String extractDigits(String src) {

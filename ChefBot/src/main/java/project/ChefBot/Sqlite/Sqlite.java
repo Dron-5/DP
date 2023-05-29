@@ -19,7 +19,7 @@ public class Sqlite {
     public List<String> findSal() {
         try {
             Statement statement = db.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM recipes WHERE description LIKE '%Пирог%'");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM recipes WHERE description LIKE '%Салат%'");
             int id_recip;
             String description;
             String url_image;
@@ -28,18 +28,19 @@ public class Sqlite {
                 id_recip = resultSet.getInt(1);
                 description = resultSet.getString(2);
                 url_image = resultSet.getString(3);
-                listSalat.add(id_recip+"). "+description+ "\n"+url_image);
+                listSalat.add(id_recip+") "+description+ "\n"+url_image);
             }
             if (listSalat.size() == 0){
                 return List.of("Извините, рецепт не найден");
             }
             return listSalat;
 
-
         } catch (SQLException e) {
             return Collections.singletonList(e.getMessage());
         }
     }
+
+
     public List<String> findSup(){
         try{
             Statement statement = db.getConnection().createStatement();
@@ -58,6 +59,29 @@ public class Sqlite {
                 return List.of("Извините, рецепт не найден");
             }
             return listSup;
+        }catch (SQLException e) {
+            return Collections.singletonList(e.getMessage());
+        }
+    }
+
+    public List<String> findPir(){
+        try{
+            Statement statement = db.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM recipes WHERE description LIKE '%Пирог%'");
+            int id_recip;
+            String description;
+            String url_image;
+            List<String> listPirog = new ArrayList<>();
+            while (resultSet.next()) {
+                id_recip = resultSet.getInt(1);
+                description = resultSet.getString(2);
+                url_image = resultSet.getString(3);
+                listPirog.add(id_recip+") "+description+ "\n"+url_image);
+            }
+            if (listPirog.size() == 0){
+                return List.of("Извините, рецепт не найден");
+            }
+            return listPirog;
         }catch (SQLException e) {
             return Collections.singletonList(e.getMessage());
         }
