@@ -40,6 +40,28 @@ public class Sqlite {
             return Collections.singletonList(e.getMessage());
         }
     }
+    public List<String> findSup(){
+        try{
+            Statement statement = db.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM recipes WHERE description LIKE '%Суп%'");
+            int id_recip;
+            String description;
+            String url_image;
+            List<String> listSup = new ArrayList<>();
+            while (resultSet.next()) {
+                id_recip = resultSet.getInt(1);
+                description = resultSet.getString(2);
+                url_image = resultSet.getString(3);
+                listSup.add(id_recip+") "+description+ "\n"+url_image);
+            }
+            if (listSup.size() == 0){
+                return List.of("Извините, рецепт не найден");
+            }
+            return listSup;
+        }catch (SQLException e) {
+            return Collections.singletonList(e.getMessage());
+        }
+    }
 
     public List<String> findRecipes(String id) {
         try {
@@ -51,7 +73,7 @@ public class Sqlite {
             while (resultSet.next()) {
                 description = resultSet.getString(2);
                 coockmethod = resultSet.getString(3);
-                listSalat.add(description +"\n"+ coockmethod);
+                listSalat.add("Ингредиенты:\n"+description +"\nСпособ приготовления:\n"+coockmethod);
             }
             return listSalat;
 

@@ -34,7 +34,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     static final String HELP_TEXT = "Данный бот создан для получения рецептов. \n" +
             "Вы можете выполнить команды из главного меню: \n" +
             "/start - Начать \n" +
-            "/help - Информация, как использовать этого бота ";
+            "/help - Информация, как использовать этого бота \n" +
+            "/recipe - Выбор рецепта";
 
 
     public TelegramBot(BotConfig config) {
@@ -42,12 +43,12 @@ public class TelegramBot extends TelegramLongPollingBot {
         List<BotCommand> listofCommands = new ArrayList<>();
         listofCommands.add(new BotCommand("/start", "Начать"));
         listofCommands.add(new BotCommand("/help", "Информация, как использовать этого бота"));
+        listofCommands.add(new BotCommand("/recipe", "Выбор рецепта"));
         try {
             this.execute(new SetMyCommands(listofCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
-
+            System.out.println("Ошибка: " + e);
         }
-
     }
 
 
@@ -69,10 +70,10 @@ public class TelegramBot extends TelegramLongPollingBot {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
             var id = extractDigits(messageText);
-            if (messageText.contains("Рецепт") && !id.isEmpty()){
+            if (messageText.contains("Рецепт") && !id.isEmpty()) {
                 var recept = sqlite.findRecipes(id);
                 sendMessage(chatId, recept);
-            } else if (messageText.contains("Рецепт") && id.isEmpty()){
+            } else if (messageText.contains("Рецепт") && id.isEmpty()) {
                 sendMessage(chatId, "Введите номер блюда! \nПример: Рецепт 2");
             }
 
@@ -84,6 +85,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 }
                 case "/help" -> sendMessage(chatId, HELP_TEXT);
                 case "Пирог" -> sendMessage(chatId, sqlite.findSal());
+                case "Суп"-> sendMessage(chatId, sqlite.findSup());
             }
 
         }
