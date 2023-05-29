@@ -28,7 +28,8 @@ public class Sqlite {
                 id_recip = resultSet.getInt(1);
                 description = resultSet.getString(2);
                 url_image = resultSet.getString(3);
-                listSalat.add(id_recip+") "+description+ "\n"+url_image);
+                listSalat.add("Блюдо "+id_recip +"\n"+ description+ "\n"+url_image +
+                        "\nЕсли вам понравилось это блюдо,\nнапишите боту его порядковый номер");
             }
             if (listSalat.size() == 0){
                 return List.of("Извините, рецепт не найден");
@@ -53,7 +54,8 @@ public class Sqlite {
                 id_recip = resultSet.getInt(1);
                 description = resultSet.getString(2);
                 url_image = resultSet.getString(3);
-                listSup.add(id_recip+") "+description+ "\n"+url_image);
+                listSup.add("Блюдо "+id_recip+"\n"+description+ "\n"+url_image +
+                        "\nЕсли вам понравилось это блюдо,\nнапишите боту его порядковый номер");
             }
             if (listSup.size() == 0){
                 return List.of("Извините, рецепт не найден");
@@ -76,7 +78,8 @@ public class Sqlite {
                 id_recip = resultSet.getInt(1);
                 description = resultSet.getString(2);
                 url_image = resultSet.getString(3);
-                listPirog.add(id_recip+") "+description+ "\n"+url_image);
+                listPirog.add("Блюдо "+id_recip+"\n"+description+ "\n"+url_image +
+                        "\nЕсли вам понравилось это блюдо,\nнапишите боту его порядковый номер");
             }
             if (listPirog.size() == 0){
                 return List.of("Извините, рецепт не найден");
@@ -93,13 +96,14 @@ public class Sqlite {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM ingredients WHERE id_ingr = '"+id+"'");
             String description;
             String coockmethod;
-            List<String> listSalat = new ArrayList<>();
+            List<String> listRecip = new ArrayList<>();
             while (resultSet.next()) {
                 description = resultSet.getString(2);
                 coockmethod = resultSet.getString(3);
-                listSalat.add("Ингредиенты:\n"+description +"\nСпособ приготовления:\n"+coockmethod);
+                listRecip.add("Ингредиенты:\n"+description +"\nСпособ приготовления:\n"+coockmethod);
             }
-            return listSalat;
+            return listRecip;
+
 
 
         } catch (SQLException e) {
