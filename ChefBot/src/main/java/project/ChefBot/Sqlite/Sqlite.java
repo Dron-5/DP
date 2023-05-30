@@ -100,7 +100,7 @@ public class Sqlite {
             while (resultSet.next()) {
                 description = resultSet.getString(2);
                 coockmethod = resultSet.getString(3);
-                listRecip.add("Ингредиенты:\n"+description +"\nСпособ приготовления:\n"+coockmethod);
+                listRecip.add("Ингредиенты:\n"+description +"\n\nСпособ приготовления:\n"+coockmethod);
             }
             return listRecip;
 

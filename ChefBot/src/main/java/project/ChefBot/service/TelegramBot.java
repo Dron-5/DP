@@ -45,6 +45,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         List<BotCommand> listofCommands = new ArrayList<>();
         listofCommands.add(new BotCommand("/start", "Начать"));
         listofCommands.add(new BotCommand("/help", "Информация, как использовать этого бота"));
+        listofCommands.add(new BotCommand("/stop", "Остановить бота"));
         try {
             this.execute(new SetMyCommands(listofCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
@@ -119,6 +120,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             userRepository.save(user);
         }
     }
+
 
     private void startCommandReceived(long chatId, String name) {
 
