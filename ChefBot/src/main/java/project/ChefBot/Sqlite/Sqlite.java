@@ -90,6 +90,30 @@ public class Sqlite {
         }
     }
 
+    public List<String> findTor(){
+        try{
+            Statement statement = db.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM recipes WHERE description LIKE '%Торт%'");
+            int id_recip;
+            String description;
+            String url_image;
+            List<String> listTor = new ArrayList<>();
+            while (resultSet.next()) {
+                id_recip = resultSet.getInt(1);
+                description = resultSet.getString(2);
+                url_image = resultSet.getString(3);
+                listTor.add("Блюдо "+id_recip+"\n"+description+ "\n"+url_image +
+                        "\nЕсли вам понравилось это блюдо,\nнапишите боту его порядковый номер");
+            }
+            if (listTor.size() == 0){
+                return List.of("Извините, рецепт не найден");
+            }
+            return listTor;
+        }catch (SQLException e) {
+            return Collections.singletonList(e.getMessage());
+        }
+    }
+
     public List<String> findRecipes(String id) {
         try {
             Statement statement = db.getConnection().createStatement();

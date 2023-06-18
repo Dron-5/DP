@@ -45,7 +45,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         List<BotCommand> listofCommands = new ArrayList<>();
         listofCommands.add(new BotCommand("/start", "Начать"));
         listofCommands.add(new BotCommand("/help", "Информация, как использовать этого бота"));
-        listofCommands.add(new BotCommand("/stop", "Остановить бота"));
         try {
             this.execute(new SetMyCommands(listofCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
@@ -89,6 +88,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 case "Салат\uD83E\uDD57" -> sendMessage(chatId, sqlite.findSal());
                 case "Суп\uD83C\uDF72" -> sendMessage(chatId, sqlite.findSup());
                 case "Пирог\uD83E\uDD67" -> sendMessage(chatId, sqlite.findPir());
+                case "Торт\uD83C\uDF70" -> sendMessage(chatId, sqlite.findTor());
             }
         }
     }
@@ -147,6 +147,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         row = new KeyboardRow();
         row.add("Пирог\uD83E\uDD67");
+        keyboardRows.add(row);
+
+        row = new KeyboardRow();
+        row.add("Торт\uD83C\uDF70");
         keyboardRows.add(row);
 
         keyboardMarkup.setKeyboard(keyboardRows);
